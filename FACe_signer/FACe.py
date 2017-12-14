@@ -1,9 +1,7 @@
+# -*- coding: utf-8 -*-
 from zeep import Plugin
 from lxml import etree
 import soap_wsse
-import os
-
-import settings
 
 class FACe_signer(Plugin):
     """
@@ -13,20 +11,28 @@ class FACe_signer(Plugin):
 
     Using default X509 Zeep's signature do not work with FACe servers... Enjoy this is aj-pain...
     """
-    KEY_FILE = os.path.join(
-        os.path.dirname(os.path.realpath(__file__)),
-        settings.CERTIFICATE['pem'])
+    def __init__(self, certificate):
+        """
+        Initialize a FACe Signer with the required certificate (PEM)
+        """
+        assert type(certificate) == str
+        self.certificate = certificate
 
     def sign_request(self, XML):
-        signed_xml = soap_wsse.sign_envelope(XML, self.KEY_FILE)
+        """
+        Auxiliar method to sign a request as FACe's expect
+        """
+
+        signed_xml = soap_wsse.sign_envelope(XML, self.certificate)
         # Verify signed envelope
-        assert soap_wsse.verify_envelope(signed_xml, self.KEY_FILE)
+        assert soap_wsse.verify_envelope(signed_xml, self.certificate)
         return signed_xml
 
     def ingress(self, envelope, http_headers, operation):
         """
         Injected method after receive response from FACe server
         """
+
         print(etree.tostring(envelope, pretty_print=True))
         return envelope, http_headers
 
