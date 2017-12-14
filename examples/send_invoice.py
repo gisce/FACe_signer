@@ -2,6 +2,7 @@
 import zeep
 from FACe_signer import FACe_signer
 
+import os
 import base64
 
 OUR_CERT = "certs/our_cert.pem"
@@ -12,11 +13,16 @@ FACE_ENVS = {
 }
 
 client = zeep.Client(
-    FACE_ENVS['pre'],
+    FACE_ENVS['staging'],
     plugins=[FACe_signer(OUR_CERT)]
 )
 
-INVOICE_FILE = 'factura-prueba-v1-2-0.xsig'
+INVOICE_FILENAME = './factura-prueba-v1-2-0.xsig'
+INVOICE = os.path.join(
+    os.path.dirname(os.path.realpath(__file__)),
+    INVOICE_FILENAME)
+
+
 
 # The expected arguments by enviarFactura FACe's resource
 the_invoice = {

@@ -10,7 +10,7 @@ FACE_ENVS = {
 }
 
 client = zeep.Client(
-    FACE_ENVS['pre'],
+    FACE_ENVS['staging'],
     plugins=[FACe_signer(OUR_CERT)]
 )
 
