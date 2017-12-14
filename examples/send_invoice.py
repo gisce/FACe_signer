@@ -14,7 +14,7 @@ FACE_ENVS = {
 
 client = zeep.Client(
     FACE_ENVS['staging'],
-    plugins=[FACe_signer(OUR_CERT)]
+    plugins=[FACe_signer(OUR_CERT, debug=True)]
 )
 
 INVOICE_FILENAME = './factura-prueba-v1-2-0.xsig'
