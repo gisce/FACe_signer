@@ -12,18 +12,23 @@ class FACe_signer(Plugin):
 
     Using default X509 Zeep's signature do not work with FACe servers... Enjoy this is aj-pain...
     """
-    def __init__(self, certificate):
+    def __init__(self, certificate, debug=False):
         """
         Initialize a FACe Signer with the required certificate (PEM)
         """
         assert type(certificate) == str
+        assert type(debug) == bool
+
         self.certificate = certificate
+        self.debug = debug
 
     def log_it(self, what):
         """
         Axiliar method to log and debug it
         """
         logging.debug(what)
+        if self.debug:
+            print (what)
 
     def sign_request(self, XML):
         """
