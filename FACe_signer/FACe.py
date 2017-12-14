@@ -2,6 +2,7 @@
 from zeep import Plugin
 from lxml import etree
 import soap_wsse
+import logging
 
 class FACe_signer(Plugin):
     """
@@ -22,7 +23,6 @@ class FACe_signer(Plugin):
         """
         Auxiliar method to sign a request as FACe's expect
         """
-
         signed_xml = soap_wsse.sign_envelope(XML, self.certificate)
         # Verify signed envelope
         assert soap_wsse.verify_envelope(signed_xml, self.certificate)
@@ -32,15 +32,15 @@ class FACe_signer(Plugin):
         """
         Injected method after receive response from FACe server
         """
-
-        print(etree.tostring(envelope, pretty_print=True))
+        # Log it
+        logging.debug("Receiving response:")
+        logging.debug(etree.tostring(envelope, pretty_print=True))
         return envelope, http_headers
 
     def egress(self, envelope, http_headers, operation, binding_options):
         """
         Method to patch the content of the envelope sended to FACe server
         """
-
         # Add a dummy soap:header
         SOAP_NS = 'http://schemas.xmlsoap.org/soap/envelope/'
         head = etree.SubElement(envelope, etree.QName(SOAP_NS, 'Header'))
@@ -51,6 +51,9 @@ class FACe_signer(Plugin):
 
         # Recreate the envelope conve   rting the signed string to an etree
         envelope = etree.fromstring(signed_envelope_string)
-        #print(etree.tostring(envelope, pretty_print=True))
+
+        # Log it
+        logging.debug("Receiving response:")
+        logging.debug(etree.tostring(envelope, pretty_print=True))
 
         return envelope, http_headers
