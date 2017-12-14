@@ -4,6 +4,19 @@ It provides a Zeep plugin desired to patch SOAP envelopes providing a pseudo-X50
 
 ## Usage
 
+Just create a Zeep client with FACE_signer plugin with the following arguments:
+  - `certificate` must be an string with the relative path to the PEM file
+  - `debug` is an optional boolean flag that triggers the stdout printing
+
+FACe_signer initialization:
+```
+FACE_plugin = FACe_signer(
+    certificate=PEM_CERTIFICATE,
+    [debug=False]
+)
+```
+
+
 ```
 from FACe_signer import FACe_signer
 
