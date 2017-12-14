@@ -19,6 +19,12 @@ class FACe_signer(Plugin):
         assert type(certificate) == str
         self.certificate = certificate
 
+    def log_it(self, what):
+        """
+        Axiliar method to log and debug it
+        """
+        logging.debug(what)
+
     def sign_request(self, XML):
         """
         Auxiliar method to sign a request as FACe's expect
@@ -33,8 +39,8 @@ class FACe_signer(Plugin):
         Injected method after receive response from FACe server
         """
         # Log it
-        logging.debug("Receiving response:")
-        logging.debug(etree.tostring(envelope, pretty_print=True))
+        self.log_it("Receiving response:")
+        self.log_it(etree.tostring(envelope, pretty_print=True))
         return envelope, http_headers
 
     def egress(self, envelope, http_headers, operation, binding_options):
@@ -53,7 +59,7 @@ class FACe_signer(Plugin):
         envelope = etree.fromstring(signed_envelope_string)
 
         # Log it
-        logging.debug("Receiving response:")
-        logging.debug(etree.tostring(envelope, pretty_print=True))
+        self.log_it("Receiving response:")
+        self.log_it(etree.tostring(envelope, pretty_print=True))
 
         return envelope, http_headers
