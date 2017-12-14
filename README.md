@@ -37,3 +37,38 @@ client = zeep.Client(
 client.service.XXX()
 
 ```
+
+
+## How to debug
+
+`debug=True` argument can be passed at FACe_signer initialization to reach a dump of the request and the response of each FACe's interaction.
+
+Also, "normal" debug using python logging can be performed, i.e:
+
+```
+import logging.config
+
+# Activate DEBUG for zeep transports
+logging.config.dictConfig({
+    'version': 1,
+    'formatters': {
+        'verbose': {
+            'format': '%(name)s: %(message)s'
+        }
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
+        },
+    },
+    'loggers': {
+        'zeep.transports': {
+            'level': 'DEBUG',
+            'propagate': True,
+            'handlers': ['console'],
+        },
+    }
+})
+```
