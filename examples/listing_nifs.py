@@ -1,4 +1,5 @@
-from FACe import FACe_signer
+# -*- coding: utf-8 -*-
+from FACe_signer import FACe_signer
 import zeep
 
 OUR_CERT = "certs/our_cert.pem"
@@ -9,8 +10,8 @@ FACE_ENVS = {
 }
 
 client = zeep.Client(
-    FACE_ENVS['prod'],
-    plugins=[FACe_signer()]
+    FACE_ENVS['pre'],
+    plugins=[FACe_signer(OUR_CERT)]
 )
 
 client.service.consultarNIFs()

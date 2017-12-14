@@ -1,5 +1,6 @@
+# -*- coding: utf-8 -*-
 import zeep
-from FACe import FACe_signer
+from FACe_signer import FACe_signer
 
 import base64
 
@@ -11,8 +12,8 @@ FACE_ENVS = {
 }
 
 client = zeep.Client(
-    FACE_ENVS['prod'],
-    plugins=[FACe_signer()]
+    FACE_ENVS['pre'],
+    plugins=[FACe_signer(OUR_CERT)]
 )
 
 INVOICE_FILE = 'factura-prueba-v1-2-0.xsig'
