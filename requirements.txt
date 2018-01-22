@@ -1,2 +1,3 @@
 soap_wsse
 zeep
+pyOpenSSL>16.1.0
