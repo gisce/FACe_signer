@@ -1,18 +1,14 @@
 language: python
 python:
-  - '2.7'
-
+- '2.7'
 before_install:
-  - 'travis_retry sudo apt-get update'
-  - 'travis_retry sudo apt-get install python-dev libxml2-dev libxmlsec1-dev'
-
-script: 'echo "Done without tests"'
-
+- travis_retry sudo apt-get update
+- travis_retry sudo apt-get install python-dev libxml2-dev libxmlsec1-dev
+script: echo "Done without tests"
 deploy:
   provider: pypi
   user: gisce
   password:
-    secure: OYLboUsOphMa+q9g8oEmJPciAhV/XZqPw753q2mAwR0adrlq9NeE6dGZbYOPxvoZY4nVbgACCWFg/l49L2loZYrvcKNgxLZDeBv0Q8wIl8ajVAe6KFnqxDsDDyUAWnP50dfEJkw0vjM9ZX3poQy7nwMTwJPxP0hVxY2W2T9qQUTQT55IRgxI+MJ8mjlQqgHoXqjNZhm+3GhutkcSNgQ65pi3niDY+1cv/eRMmAeDTcfEOAXMVbAxz3uUNuNXx4V5bYPjCQxB2812Dqj7VtN1utkdMc4611o8oC+nvVLZ5MXBvkq1c+yo3TJQhp1fd1Nuhk6TAS0wZ+wGqP8gukRv6jHMQBtfFiBQ1po3q9BQuRPTqz/eTRUlauVuNH+TjdU3cMwNKCf0xvEfqEv1mdvAYpfL9mfWiXr19KbXKJIgv3FCY/yIZYOYyAfDc5vXlYLa3lz7bEP1NQif/R4dEFHNsAwe0FmM28Kv4StAS7oLUHfAfg0Xr+bsjGMHarD47WV+rw70Dsi/6tXtRLEbppHSoZOn2EwlcmCsZR3G+IQPbds2GMa+UDNdr7YSAqIuibYkn82kGP75N2L68XbLWZ1lEPCSnovdCfAhWfrPqP8qXe2dnnTt4zK6lxMVTygMT6bnXPxeY+onw0GZok0kpS2b/SNUCu+1oKssGi2m2cVxGuQ=
-  on:
+    secure: secure: JJGpUSPv2AlLys8eqqjcSXmaTgBIKWW0W+aBhwjiAMHM+rrdlQ2NLsXZsc9m9R6A8xdGYNAiq9rP8ZLn7bj3RvoErEg0jhASZY8l4PUZeKjb7JUrEBOLo48kPHygKaTYIesrBhrDMQ2lRbaf8h5fLojT1oL24GlTzqb9NjpC0/Z9ERJ06i4eAHKUK9BOP2RrvImYKqVYXvDbHZ+hxYMsd6fotPexNJsItAvZhHmyPwQ39KJkSKFb0VFi0H0437bdhDfOH5ELmaNo2XsjffxdfWVlW9puLhslKqzU+WGIq+bfuhp4mq9TcbXZlAqJ83nPkMXQL7xbDF0v9gkdZ0syd42ZPdXsuryWy2qDR3i3VfLkoW/OkyTgaQoTgum3kAV64moixQUUdKnRYNn16G7hjYz0PjDRVcEIVoRhDEagK4YqCEMrdEsAzqOeKgv4dXQTfYmNdIIv2pxL+BxuTsFBwGk46NJ4zJU5DYI30adpiG5jginbc/slBDZXvtpvB8OmhVKbdPeSgOy77llzk2ld0bMeEYgElfoxMJM7Znc0fWaf+fMqEsvI6zWVtB4yRbsoOJMtn9EbY+pHmbC25pWJNY66SO0ho1YOQ6ANSl5JDKBvSP74lDEypzwyK9WxfYFR7Dr4E5EkIXL2M+mPxPxkei9oeZHZgijL4MBLtX54GxM=
+  true:
     tags: true
-    branch: master
