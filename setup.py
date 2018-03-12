@@ -2,7 +2,8 @@
 from setuptools import setup, find_packages
 import FACe_signer
 
-INSTALL_REQUIRES = ['zeep', 'soap_wsse']
+with open('requirements.txt', 'r') as f:
+    INSTALL_REQUIRES = f.readlines()
 
 setup(
     name='FACe signer',
