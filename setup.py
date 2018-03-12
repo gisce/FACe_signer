@@ -6,7 +6,7 @@ with open('requirements.txt', 'r') as f:
     INSTALL_REQUIRES = f.readlines()
 
 setup(
-    name='FACe signer',
+    name='FACe_signer',
     description='Zeep plugin that signs FACe SOAP requests',
     version=__version__,
     url='http://www.gisce.net',
