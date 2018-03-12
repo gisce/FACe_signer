@@ -38,6 +38,16 @@ client.service.XXX()
 
 ```
 
+## How to install
+
+Just install it using pip:
+
+``` 
+$ pip install FACe_signer
+``` 
+
+Remember to process the OS requirements (libsecxml development), see [requirements_os.txt](requirements_os.txt)
+
 
 ## How to debug
 
